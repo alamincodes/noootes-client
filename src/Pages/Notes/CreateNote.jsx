@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { HiOutlineChevronLeft } from "react-icons/hi2";
 import { franc, francAll } from "https://esm.sh/franc@6";
 import { Link } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 const CreateNote = () => {
+  useTitle("create note");
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
 

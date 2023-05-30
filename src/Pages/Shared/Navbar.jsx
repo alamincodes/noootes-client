@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiBars2, HiOutlineXMark } from "react-icons/hi2";
+import { RiSettings5Line } from "react-icons/ri";
+import { VscSignOut } from "react-icons/vsc";
+import { AUTH_CONTEXT } from "../../context/AuthProvider";
 const Navbar = () => {
+  const { user, logOut } = useContext(AUTH_CONTEXT);
   const [openMenu, setOpenMenu] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
+  console.log(user);
+  const handleLogOut = () => {
+    logOut();
+  };
   return (
     <>
       <div className="bg-white/10 z-20 fixed top-0 w-full backdrop-blur-xl text-white py-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto relative">
           <nav className="flex justify-between items-center">
             {/* logo */}
             <div>
@@ -48,14 +57,64 @@ const Navbar = () => {
 
             {/* btn */}
             <div className="flex items-center space-x-3">
-              <div className="relative group">
-                <div className="absolute blur-xl -inset-0.5 group-hover:opacity-90 opacity-70 duration-200 rounded bg-gradient-to-tr from-[#AD44FF] via-[#448FFF] to-[#8BFF44] "></div>
-                <div className="bg-gradient-to-tr p-[2px] rounded from-[#016eda] to-[#d900c0]">
-                  <button className="bg-black rounded backdrop-blur-xl py-1 px-5">
-                   Login
-                  </button>
+              {user?.uid ? (
+                <>
+                  <div
+                    onClick={() => setOpenProfile(!openProfile)}
+                    className="bg-gradient-to-tr cursor-pointer flex justify-center items-center w-9 h-9 rounded-full from-teal-400 to-purple-600"
+                  >
+                    <span className="text-3xl mb-1 select-none">
+                      {user?.displayName?.[0]}
+                    </span>
+                  </div>
+                  {openProfile && (
+                    <div
+                      className="absolute border border-gray-600 md:right-14 right-1 md:top-6 top-7 bg-[#1A1A1A] w-[200px] text-base z-50 list-none divide-y divide-gray-100 rounded shadow-boxShadow my-4"
+                      id="dropdown"
+                    >
+                      <div className="px-4 py-3">
+                        <h2 className="font-bold text-md">
+                          <span className="relative text-white">
+                            {user?.displayName}
+                          </span>
+                        </h2>
+                        <p className="block text-sm font-medium truncate">
+                          {user?.email}
+                        </p>
+                      </div>
+                      <ul className="py-1" aria-labelledby="dropdown">
+                        <Link
+                          to="/settings/updateName"
+                          className="text-sm hover:text-teal-600 font-medium block px-4 py-2"
+                        >
+                          <li className="flex items-center">
+                            <RiSettings5Line size={18} className="mr-1" />{" "}
+                            <span>Settings</span>
+                          </li>
+                        </Link>
+
+                        <li
+                          onClick={handleLogOut}
+                          className="flex items-center  text-sm font-bold hover:text-red-500 text-red-700 border-t px-4 py-2"
+                        >
+                          <VscSignOut size={18} className="mr-1" /> Sign out
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="relative group">
+                  <div className="absolute blur-xl -inset-0.5 group-hover:opacity-90 opacity-70 duration-200 rounded bg-gradient-to-tr from-[#AD44FF] via-[#448FFF] to-[#8BFF44] "></div>
+                  <Link to="/login">
+                    <div className="bg-gradient-to-tr p-[2px] rounded from-[#016eda] to-[#d900c0]">
+                      <button className="bg-black rounded backdrop-blur-xl py-1 px-5">
+                        Login
+                      </button>
+                    </div>
+                  </Link>
                 </div>
-              </div>
+              )}
 
               {/* bars */}
               <div
@@ -80,21 +139,27 @@ const Navbar = () => {
       >
         <ul className="flex flex-col justify-center items-center space-y-4 py-4">
           <Link to="/">
-            <li>Home</li>
+            <li onClick={() => setOpenMenu(false)}>Home</li>
           </Link>
           <Link to="/about">
-            <li>About</li>
+            <li onClick={() => setOpenMenu(false)}>About</li>
           </Link>
           <Link to="/notes">
-            <li>Notes</li>
+            <li onClick={() => setOpenMenu(false)}>Notes</li>
           </Link>
           <div className="relative group">
             <div className="absolute blur-xl -inset-0.5 group-hover:opacity-90 opacity-70 duration-200 rounded bg-gradient-to-tr from-[#AD44FF] via-[#448FFF] to-[#8BFF44] "></div>
-            <div className="bg-gradient-to-tr p-[2px] rounded from-[#016eda] to-[#d900c0]">
-              <button className="bg-black rounded backdrop-blur-xl py-1 px-5">
-                Sign up
-              </button>
-            </div>
+
+            <Link to="/signup">
+              <div
+                onClick={() => setOpenMenu(false)}
+                className="bg-gradient-to-tr p-[2px] rounded from-[#016eda] to-[#d900c0]"
+              >
+                <button className="bg-black rounded backdrop-blur-xl py-1 px-5">
+                  Sign up
+                </button>
+              </div>
+            </Link>
           </div>
         </ul>
       </div>
