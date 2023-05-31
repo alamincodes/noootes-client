@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import AnimatePage from "../Shared/ANimatePage";
+import AnimatePage from "../Shared/AnimatePage";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiOutlineAtSymbol, HiFingerPrint } from "react-icons/hi2";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
@@ -9,21 +9,28 @@ const Login = () => {
   useTitle("Login");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
   const { loginUser } = useContext(AUTH_CONTEXT);
+
+  const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   const handleSignUp = (data) => {
     setErrorMessage("");
     setIsLoading(true);
     console.log(data);
+
     loginUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+
+        navigate(from, { replace: true });
         setIsLoading(false);
       })
       .catch((error) => {

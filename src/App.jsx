@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import { routes } from "./Pages/Layout/Routes";
+import { routes } from "./Pages/Routes/Routes";
 import { Toaster } from "react-hot-toast";
 
 function App() {

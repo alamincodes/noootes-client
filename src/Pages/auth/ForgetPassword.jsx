@@ -1,22 +1,23 @@
 import React, { useContext, useState } from "react";
 import useTitle from "../../hooks/useTitle";
-import AnimatePage from "../Shared/ANimatePage";
+import AnimatePage from "../Shared/AnimatePage";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import ForgetSuccessModal from "./ForgetSuccessModal";
 const ForgetPassword = () => {
   useTitle("forget password");
-  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrormessage] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { forgetPassword } = useContext(AUTH_CONTEXT);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const email = e.target.email.value;
     if (email.length === 0) {
       setErrormessage("Please provide email");
       return;
     }
+
     setErrormessage("");
     setIsLoading(true);
     forgetPassword(email)
@@ -24,16 +25,17 @@ const ForgetPassword = () => {
         console.log("reset successfully");
         setIsLoading(false);
         setOpenModal(true);
+        console.log(isLoading);
       })
       .catch((error) => {
         console.error(error);
         if (error.message.includes("user-not-found")) {
           setErrormessage("User not found");
         }
+        setIsLoading(false);
       });
-    setIsLoading(false);
-    console.log(email);
   };
+
   return (
     <AnimatePage>
       <div className="container mx-auto">
@@ -41,7 +43,7 @@ const ForgetPassword = () => {
           <form onSubmit={handleSubmit} className="md:w-96 w-[290px]">
             <input
               type="email"
-              className="w-full mt-2 py-3 rounded-md bg-transparent border outline-none px-10 border-gray-600 focus:border-gray-300"
+              className="w-full mt-2 py-3 rounded-md bg-transparent border outline-none pl-4 border-gray-600 focus:border-gray-300"
               placeholder="Enter email"
               name="email"
             />

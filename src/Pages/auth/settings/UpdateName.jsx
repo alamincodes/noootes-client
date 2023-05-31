@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import AnimatePage from "../../Shared/ANimatePage";
+import AnimatePage from "../../Shared/AnimatePage";
 import { AUTH_CONTEXT } from "../../../context/AuthProvider";
 import { toast } from "react-hot-toast";
 const UpdateName = () => {
@@ -8,6 +8,11 @@ const UpdateName = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.updateName.value;
+
+    if (name.length === 0) {
+      return;
+    }
+
     setIsLoading(true);
     updateName(name)
       .then(() => {
@@ -18,7 +23,7 @@ const UpdateName = () => {
             border: "1px solid #2dd4bf",
             padding: "16px",
             color: "#2dd4bf",
-            background: "black"
+            background: "black",
           },
           iconTheme: {
             primary: "#2dd4bf",

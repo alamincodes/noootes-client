@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Main from "./Main";
+import Main from "../Layout/Main";
 import Home from "../Home/Home";
 import Notes from "../Notes/Notes";
 import About from "../Home/About";
@@ -10,6 +10,9 @@ import Settings from "../auth/settings/Settings";
 import ChangePassword from "../auth/settings/ChangePassword";
 import UpdateName from "../auth/settings/UpdateName";
 import ForgetPassword from "../auth/ForgetPassword";
+import PrivateRoute from "./PrivateRoute";
+import PageNotFound from "../Shared/PageNotFound";
+import NoteDetail from "../Notes/NoteDetail";
 
 export const routes = createBrowserRouter([
   {
@@ -21,11 +24,27 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/notes",
-        element: <Notes />,
+        element: (
+          <PrivateRoute>
+            <Notes />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/create-note",
-        element: <CreateNote />,
+        element: (
+          <PrivateRoute>
+            <CreateNote />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/note/:id",
+        element: (
+          <PrivateRoute>
+            <NoteDetail />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -41,7 +60,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/settings",
-        element: <Settings />,
+        element: (
+          <PrivateRoute>
+            <Settings />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "/settings/changePassword",
@@ -56,6 +79,10 @@ export const routes = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "*",
+        element: <PageNotFound />,
       },
     ],
   },

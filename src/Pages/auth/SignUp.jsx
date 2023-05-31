@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import AnimatePage from "../Shared/ANimatePage";
+import AnimatePage from "../Shared/AnimatePage";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 import {
   HiOutlineAtSymbol,
   HiFingerPrint,
@@ -11,6 +12,7 @@ import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 const SignUp = () => {
   useTitle("Sign up");
+  const { createUser, updateName } = useContext(AUTH_CONTEXT);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const {
@@ -19,12 +21,15 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-  const { createUser, updateName } = useContext(AUTH_CONTEXT);
-
   const navigate = useNavigate();
 
   const handleSignUp = (data) => {
     console.log(data);
+
+    const userInfo = {
+      name: data.name,
+      email: data.email,
+    };
     setErrorMessage("");
     setIsLoading(true);
     createUser(data.email, data.password)
@@ -32,14 +37,35 @@ const SignUp = () => {
         const user = result.user;
         updateName(data.name);
         console.log(user);
-        navigate("/");
-        setIsLoading(false);
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.acknowledged) {
+              setIsLoading(false);
+              navigate("/");
+            }
+          });
       })
       .catch((error) => {
         console.error(error);
+        const errMessage = error.message;
+        if (errMessage.includes("email-already-in-use")) {
+          setErrorMessage("Email already used, try another email.");
+        }
         setIsLoading(false);
       });
   };
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
     <AnimatePage>
       <div>
@@ -135,15 +161,15 @@ const SignUp = () => {
                 )}
               </div>
               {/* error message */}
-              <div className="flex justify-start w-full text-left ">
+              <div className="flex justify-start w-full text-left mt-2">
                 <p className="font-bold text-red-600">{errorMessage}</p>
               </div>
               {/* sign up btn */}
               <div className="relative mt-5 w-full">
                 <div className="absolute blur-xl -inset-0.5 group-hover:opacity-90 opacity-70 duration-200 rounded bg-gradient-to-tr from-[#AD44FF] via-[#448FFF] to-[#8BFF44] "></div>
                 <div className="bg-gradient-to-tr p-[2px] rounded from-[#016eda] to-[#d900c0]">
-                  <button className="bg-black w-full rounded backdrop-blur-xl py-4 px-5">
-                    Sign up
+                  <button disabled={isLoading} className="bg-black w-full rounded backdrop-blur-xl py-4 px-5">
+                    {isLoading ? "loading..." : "Sign up"}
                   </button>
                 </div>
               </div>

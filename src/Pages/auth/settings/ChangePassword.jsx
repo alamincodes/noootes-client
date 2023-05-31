@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import AnimatePage from "../../Shared/ANimatePage";
+import AnimatePage from "../../Shared/AnimatePage";
 import { AUTH_CONTEXT } from "../../../context/AuthProvider";
 import { toast } from "react-hot-toast";
 import useTitle from "../../../hooks/useTitle";

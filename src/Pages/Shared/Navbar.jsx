@@ -8,7 +8,7 @@ const Navbar = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
   const [openMenu, setOpenMenu] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
-  console.log(user);
+  // console.log(user);
   const handleLogOut = () => {
     logOut();
   };
@@ -63,7 +63,7 @@ const Navbar = () => {
                     onClick={() => setOpenProfile(!openProfile)}
                     className="bg-gradient-to-tr cursor-pointer flex justify-center items-center w-9 h-9 rounded-full from-teal-400 to-purple-600"
                   >
-                    <span className="text-3xl mb-1 select-none">
+                    <span className="text-2xl  select-none uppercase">
                       {user?.displayName?.[0]}
                     </span>
                   </div>
@@ -87,7 +87,7 @@ const Navbar = () => {
                           to="/settings/updateName"
                           className="text-sm hover:text-teal-600 font-medium block px-4 py-2"
                         >
-                          <li className="flex items-center">
+                          <li className="flex items-center cursor-pointer">
                             <RiSettings5Line size={18} className="mr-1" />{" "}
                             <span>Settings</span>
                           </li>
@@ -95,7 +95,7 @@ const Navbar = () => {
 
                         <li
                           onClick={handleLogOut}
-                          className="flex items-center  text-sm font-bold hover:text-red-500 text-red-700 border-t px-4 py-2"
+                          className="flex items-center cursor-pointer text-sm font-bold hover:text-red-500 text-red-700 border-t px-4 py-2"
                         >
                           <VscSignOut size={18} className="mr-1" /> Sign out
                         </li>

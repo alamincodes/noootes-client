@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { HiOutlineChevronLeft } from "react-icons/hi2";
-import { franc, francAll } from "https://esm.sh/franc@6";
-import { Link } from "react-router-dom";
+import { franc } from "https://esm.sh/franc@6";
+import { Link, useNavigate } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
+import { AUTH_CONTEXT } from "../../context/AuthProvider";
+import useCreateDate from "../../hooks/useCreateDate";
 const CreateNote = () => {
   useTitle("create note");
+  const { user } = useContext(AUTH_CONTEXT);
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [text, setText] = useState("");
   const [language, setLanguage] = useState("");
-
+  const navigate = useNavigate();
+  const date = useCreateDate();
+  // console.log(date);
   const detectLanguage = (text) => {
     const languageCode = franc(text, { minLength: 0 });
     return languageCode;
@@ -24,6 +30,33 @@ const CreateNote = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const noteInfo = {
+      title,
+      note,
+      date,
+      email: user?.email,
+    };
+    // if (note.length === 0) {
+    //   return;
+    // }
+
+    setIsLoading(true);
+    fetch("http://localhost:5000/note", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(noteInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.acknowledged) {
+          setIsLoading(false);
+          navigate("/notes");
+        }
+      });
+
     console.log(title, note, language);
   };
   return (
@@ -39,9 +72,10 @@ const CreateNote = () => {
           <button
             onClick={handleSubmit}
             type="submit"
+            disabled={isLoading}
             className="bg-teal-300 cursor-pointer text-black font-semibold px-5 py-2 rounded"
           >
-            Save
+            {isLoading ? "Saving..." : "Save"}
           </button>
         </div>
         <form className="flex flex-col">

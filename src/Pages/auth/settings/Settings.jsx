@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { HiOutlineKey, HiOutlineUserCircle } from "react-icons/hi";
-import AnimatePage from "../../Shared/ANimatePage";
+import AnimatePage from "../../Shared/AnimatePage";
 
 const Settings = () => {
   return (
