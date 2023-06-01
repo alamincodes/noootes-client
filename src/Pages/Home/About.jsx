@@ -3,7 +3,14 @@ import useTitle from "../../hooks/useTitle";
 
 const About = () => {
   useTitle("About");
-  return <div>about</div>;
+  return (
+    <section
+      className="container mx-auto text-center
+  "
+    >
+      About page soon...
+    </section>
+  );
 };
 
 export default About;

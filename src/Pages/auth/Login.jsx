@@ -5,21 +5,27 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiOutlineAtSymbol, HiFingerPrint } from "react-icons/hi2";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
+import useToken from "../../hooks/useToken";
 const Login = () => {
   useTitle("Login");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [jwtEmail, setJwtEmail] = useState("");
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { loginUser } = useContext(AUTH_CONTEXT);
 
+  const { loginUser } = useContext(AUTH_CONTEXT);
+  const [token] = useToken(jwtEmail);
   const navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
-
+  console.log(jwtEmail);
+  if (token) {
+    navigate(from, { replace: true });
+  }
   const handleSignUp = (data) => {
     setErrorMessage("");
     setIsLoading(true);
@@ -30,7 +36,8 @@ const Login = () => {
         const user = result.user;
         console.log(user);
 
-        navigate(from, { replace: true });
+        setJwtEmail(data.email);
+        // navigate(from, { replace: true });
         setIsLoading(false);
       })
       .catch((error) => {

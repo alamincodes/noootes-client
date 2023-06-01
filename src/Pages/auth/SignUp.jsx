@@ -37,7 +37,7 @@ const SignUp = () => {
         const user = result.user;
         updateName(data.name);
         console.log(user);
-        fetch("http://localhost:5000/user", {
+        fetch("https://noootes-server.vercel.app/user", {
           method: "POST",
           headers: {
             "content-type": "application/json",

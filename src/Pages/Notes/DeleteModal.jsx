@@ -21,14 +21,8 @@ const DeleteModal = ({ handelDelete, handleCloseModal, deleteLoading }) => {
                       className="text-base font-semibold leading-6 text-gray-100"
                       id="modal-title"
                     >
-                      Check your email
+                      Are you sure delete the note?
                     </h3>
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-300">
-                        If you don't get the password reset email, please check
-                        your spam folder.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>

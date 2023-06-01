@@ -15,10 +15,11 @@ const NoteDetail = () => {
 
   const handelDelete = () => {
     setDeleteLoading(true);
-    fetch(`http://localhost:5000/delete/${id}`, {
+    fetch(`https://noootes-server.vercel.app/delete/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("noooteToken")}`,
       },
     })
       .then((res) => res.json())
@@ -35,7 +36,11 @@ const NoteDetail = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:5000/note/${id}`)
+    fetch(`https://noootes-server.vercel.app/note/${id}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("noooteToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -66,15 +71,17 @@ const NoteDetail = () => {
                 />
               </span>
             </div>
-            <div className="bg-teal-300/20 cursor-pointer text-black font-semibold p-3 rounded-full">
-              <span>
-                {" "}
-                <MdOutlineEdit
-                  size={25}
-                  className="text-teal-300 hover:text-teal-500"
-                />
-              </span>
-            </div>
+            <Link to={`/note-update/${note._id}`}>
+              <div className="bg-teal-300/20 cursor-pointer text-black font-semibold p-3 rounded-full">
+                <span>
+                  {" "}
+                  <MdOutlineEdit
+                    size={25}
+                    className="text-teal-300 hover:text-teal-500"
+                  />
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
         {/* loading skeleton */}

@@ -10,14 +10,20 @@
 @layer base {
   body {
     @apply font-primary bg-black text-white leading-relaxed;
+
+   
   }
 }
 
 .note:nth-child(odd) {
-  background-image: linear-gradient(167deg, #e84393 0%, #000000 74%);
+  background-image: linear-gradient(167deg, #8b5cf6 0%, #000000 100%);
 }
 .note:nth-child(1) {
-  background-image: linear-gradient(145deg, #923cb5 0%, #000000 74%);
+  background-image: linear-gradient(145deg, #006eff 0%, #000000 100%);
+}
+.hello {
+  background-image: linear-gradient( -45deg, #bd34fe 50%, #47caff 50% );
+  filter: blur(90px);
 }
 
 @media screen and (max-width: 600px) {

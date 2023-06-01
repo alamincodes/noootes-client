@@ -13,6 +13,7 @@ import ForgetPassword from "../auth/ForgetPassword";
 import PrivateRoute from "./PrivateRoute";
 import PageNotFound from "../Shared/PageNotFound";
 import NoteDetail from "../Notes/NoteDetail";
+import UpdateNote from "../Layout/UpdateNote";
 
 export const routes = createBrowserRouter([
   {
@@ -35,6 +36,22 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CreateNote />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/note/:id",
+        element: (
+          <PrivateRoute>
+            <NoteDetail />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/note-update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateNote />
           </PrivateRoute>
         ),
       },

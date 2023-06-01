@@ -17,16 +17,16 @@ const CreateNote = () => {
   const navigate = useNavigate();
   const date = useCreateDate();
   // console.log(date);
-  const detectLanguage = (text) => {
-    const languageCode = franc(text, { minLength: 0 });
-    return languageCode;
-  };
-  const handleTextChange = (event) => {
-    setText(event.target.value);
-    const detectedLanguage = detectLanguage(event.target.value);
-    setLanguage(detectedLanguage);
-    console.log(text);
-  };
+  // const detectLanguage = (text) => {
+  //   const languageCode = franc(text, { minLength: 0 });
+  //   return languageCode;
+  // };
+  // const handleTextChange = (event) => {
+  //   setText(event.target.value);
+  //   const detectedLanguage = detectLanguage(event.target.value);
+  //   setLanguage(detectedLanguage);
+  //   console.log(text);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,12 +36,12 @@ const CreateNote = () => {
       date,
       email: user?.email,
     };
-    // if (note.length === 0) {
-    //   return;
-    // }
+    if (title.length === 0) {
+      return;
+    }
 
     setIsLoading(true);
-    fetch("http://localhost:5000/note", {
+    fetch("https://noootes-server.vercel.app/note", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -72,8 +72,8 @@ const CreateNote = () => {
           <button
             onClick={handleSubmit}
             type="submit"
-            disabled={isLoading}
-            className="bg-teal-300 cursor-pointer text-black font-semibold px-5 py-2 rounded"
+            disabled={isLoading || title.length === 0}
+            className="bg-teal-300 disabled:bg-gray-300/30 disabled:text-gray-400 cursor-pointer text-black font-semibold px-5 py-2 rounded"
           >
             {isLoading ? "Saving..." : "Save"}
           </button>
@@ -86,14 +86,14 @@ const CreateNote = () => {
             } text-2xl py-[0.5rem] px-4 outline-none`}
             autoFocus
             name="title"
-            onChange={handleTextChange}
-            onBlur={(e) => setTitle(e.target.value)}
+            // onChange={handleTextChange}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Title"
           />
           <textarea
             name="note"
-            onChange={handleTextChange}
-            onBlur={(e) => setNote(e.target.value)}
+            // onChange={handleTextChange}
+            onChange={(e) => setNote(e.target.value)}
             className={`bg-transparent ${
               language === "ben" ? "font-secondary" : "font-primary"
             } my-2 py-[0.5rem] px-4 outline-none`}
