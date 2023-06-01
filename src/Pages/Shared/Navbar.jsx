@@ -12,6 +12,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut();
     setOpenProfile(false);
+    localStorage.removeItem('noooteToken')
   };
   return (
     <>

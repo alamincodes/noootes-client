@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { HiOutlineChevronLeft, HiOutlineTrash } from "react-icons/hi2";
 import { MdOutlineEdit } from "react-icons/md";
 import DeleteModal from "../Notes/DeleteModal";
+import { AUTH_CONTEXT } from "../../context/AuthProvider";
 const NoteDetail = () => {
+  const { logOut } = useContext(AUTH_CONTEXT);
   const [note, setNote] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -22,7 +24,13 @@ const NoteDetail = () => {
         authorization: `bearer ${localStorage.getItem("noooteToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("accessToken");
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.deletedCount) {
           navigate("/notes");

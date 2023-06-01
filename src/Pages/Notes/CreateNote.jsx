@@ -7,13 +7,13 @@ import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import useCreateDate from "../../hooks/useCreateDate";
 const CreateNote = () => {
   useTitle("create note");
-  const { user } = useContext(AUTH_CONTEXT);
+  const { user, logOut } = useContext(AUTH_CONTEXT);
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const [text, setText] = useState("");
-  const [language, setLanguage] = useState("");
+  // const [text, setText] = useState("");
+  // const [language, setLanguage] = useState("");
   const navigate = useNavigate();
   const date = useCreateDate();
   // console.log(date);
@@ -41,10 +41,11 @@ const CreateNote = () => {
     }
 
     setIsLoading(true);
-    fetch("https://noootes-server.vercel.app/note", {
+    fetch("http://localhost:5000/note", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("noooteToken")}`,
       },
       body: JSON.stringify(noteInfo),
     })
@@ -57,7 +58,7 @@ const CreateNote = () => {
         }
       });
 
-    console.log(title, note, language);
+    console.log(title, note);
   };
   return (
     <div className="">
@@ -81,9 +82,7 @@ const CreateNote = () => {
         <form className="flex flex-col">
           <input
             type="text"
-            className={`bg-transparent ${
-              language === "ben" ? "font-secondary" : "font-primary"
-            } text-2xl py-[0.5rem] px-4 outline-none`}
+            className={`bg-transparent text-2xl py-[0.5rem] px-4 outline-none`}
             autoFocus
             name="title"
             // onChange={handleTextChange}
@@ -94,9 +93,7 @@ const CreateNote = () => {
             name="note"
             // onChange={handleTextChange}
             onChange={(e) => setNote(e.target.value)}
-            className={`bg-transparent ${
-              language === "ben" ? "font-secondary" : "font-primary"
-            } my-2 py-[0.5rem] px-4 outline-none`}
+            className={`bg-transparent my-2 py-[0.5rem] px-4 outline-none`}
             placeholder="Note detail..."
             cols="30"
             rows="10"

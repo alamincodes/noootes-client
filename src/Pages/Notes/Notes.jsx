@@ -8,7 +8,7 @@ import Note from "./Note";
 import SkeletonCard from "../Shared/SkeletonCard";
 const Notes = () => {
   useTitle("Notes");
-  const { user } = useContext(AUTH_CONTEXT);
+  const { user, logOut } = useContext(AUTH_CONTEXT);
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,9 +19,15 @@ const Notes = () => {
         authorization: `bearer ${localStorage.getItem("noooteToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("accessToken");
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setIsLoading(false);
         setNotes(data.reverse());
       });

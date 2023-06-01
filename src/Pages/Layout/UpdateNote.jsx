@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useCreateDate from "../../hooks/useCreateDate";
 import { HiOutlineChevronLeft } from "react-icons/hi2";
+import { AUTH_CONTEXT } from "../../context/AuthProvider";
 const UpdateNote = () => {
+  const { logOut } = useContext(AUTH_CONTEXT);
   const [noteDetail, setNoteDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,7 +34,13 @@ const UpdateNote = () => {
       },
       body: JSON.stringify(noteInfo),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("accessToken");
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         // console.log(data);
         if (data.acknowledged) {
@@ -48,7 +56,13 @@ const UpdateNote = () => {
         authorization: `bearer ${localStorage.getItem("noooteToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("accessToken");
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         setNoteDetail(data);
         console.log(data);
