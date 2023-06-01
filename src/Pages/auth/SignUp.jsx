@@ -104,7 +104,7 @@ const SignUp = () => {
 
                 {errors.name?.type === "required" && (
                   <p className="text-red-600 font-semibold">
-                    Please provide name*
+                    Name cannot be empty.*
                   </p>
                 )}
               </div>
@@ -127,7 +127,7 @@ const SignUp = () => {
 
                 {errors.email?.type === "required" && (
                   <p className="text-red-600 font-semibold">
-                    Please provide email*
+                    Email cannot be empty.*
                   </p>
                 )}
               </div>
@@ -168,7 +168,10 @@ const SignUp = () => {
               <div className="relative mt-5 w-full">
                 <div className="absolute blur-xl -inset-0.5 group-hover:opacity-90 opacity-70 duration-200 rounded bg-gradient-to-tr from-[#AD44FF] via-[#448FFF] to-[#8BFF44] "></div>
                 <div className="bg-gradient-to-tr p-[2px] rounded from-[#016eda] to-[#d900c0]">
-                  <button disabled={isLoading} className="bg-black w-full rounded backdrop-blur-xl py-4 px-5">
+                  <button
+                    disabled={isLoading}
+                    className="bg-black w-full rounded backdrop-blur-xl py-4 px-5"
+                  >
                     {isLoading ? "loading..." : "Sign up"}
                   </button>
                 </div>

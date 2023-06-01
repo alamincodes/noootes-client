@@ -41,7 +41,7 @@ const CreateNote = () => {
     }
 
     setIsLoading(true);
-    fetch("http://localhost:5000/note", {
+    fetch("https://noootes-server.vercel.app/note", {
       method: "POST",
       headers: {
         "content-type": "application/json",

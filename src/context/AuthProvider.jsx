@@ -40,6 +40,7 @@ const AuthProvider = ({ children }) => {
   // user update password
   const userUpdatePassword = (newPassword) => {
     return updatePassword(auth.currentUser, newPassword);
+    
   };
  
   // user name update

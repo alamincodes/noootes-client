@@ -8,12 +8,14 @@ const ChangePassword = () => {
   useTitle("update password");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const { userUpdatePassword, user, loginUser } = useContext(AUTH_CONTEXT);
+  const { userUpdatePassword, user, loginUser, setLoading } =
+    useContext(AUTH_CONTEXT);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentPassword = e.target.currentPassword.value;
     const newPassword = e.target.updatePassword.value;
+
     setErrorMessage("");
     if (currentPassword.length === 0 || newPassword.length === 0) {
       setErrorMessage("Provide password");
@@ -30,6 +32,7 @@ const ChangePassword = () => {
           .then(() => {
             console.log("success");
             setIsLoading(false);
+            setLoading(false);
             toast.success("Password update successfully", {
               style: {
                 border: "1px solid #2dd4bf",
@@ -46,9 +49,12 @@ const ChangePassword = () => {
           .catch((error) => {
             console.error(error);
             setIsLoading(false);
+            setLoading(false);
           });
       })
       .catch((error) => {
+        setIsLoading(false);
+        setLoading(false);
         const errMessage = error.message;
         if (errMessage.includes("wrong-password")) {
           setErrorMessage("Wrong password");
@@ -85,11 +91,10 @@ const ChangePassword = () => {
             }
           );
         }
-
-        setIsLoading(false);
         console.error(errMessage);
       });
   };
+
   return (
     <AnimatePage>
       <div className="mt-20">
@@ -127,13 +132,7 @@ const ChangePassword = () => {
                 type="submit"
                 className="bg-black w-full rounded backdrop-blur-xl py-4 px-5"
               >
-                {isLoading ? (
-                  <div className="flex justify-center item-center">
-                    <div className=" h-5 w-5 border-2 border-white rounded-full border-dotted animate-spin"></div>
-                  </div>
-                ) : (
-                  "Updater password"
-                )}
+                Updater password
               </button>
             </div>
           </div>
