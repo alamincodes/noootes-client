@@ -21,7 +21,7 @@ const Notes = () => {
     })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          localStorage.removeItem("accessToken");
+          localStorage.removeItem("noooteToken");
           return logOut();
         }
         return res.json();
@@ -56,7 +56,7 @@ const Notes = () => {
           <Link to="/create-note">
             <div
               title="Create note"
-              className="md:bottom-[4rem] md:right-[7rem] bottom-[4rem] right-[1rem] fixed"
+              className="md:bottom-[4rem] md:right-[7rem] bottom-[4rem] z-40 right-[1rem] fixed"
             >
               <button className="bg-white/75 text-black backdrop-blur-3xl p-2 rounded-[10px] flex items-center justify-center">
                 <HiOutlinePlus size={30} />

@@ -80,13 +80,15 @@ const Login = () => {
                   type="email"
                   {...register("email", { required: true })}
                   placeholder="Enter your email"
-                  className="border pl-10 py-4 border-gray-600 focus:border-gray-300 rounded-md bg-transparent w-full outline-none font-normal p-2"
+                  className={`border pl-10 py-4 ${
+                    errors.email ? "border-red-600" : "border-gray-600"
+                  } focus:border-gray-300 rounded-md bg-transparent w-full outline-none font-normal p-2`}
                 />
               </div>
 
               {errors.email?.type === "required" && (
                 <p className="text-red-600 font-semibold">
-                  Please provide email*
+                  Email cannot be empty.*
                 </p>
               )}
             </div>
@@ -102,14 +104,16 @@ const Login = () => {
                 <input
                   type="password"
                   {...register("password", {
-                    required: "Please provide password",
+                    required: "Password cannot be empty.*",
                     minLength: {
                       value: 6,
                       message: "Password must be 6 character",
                     },
                   })}
                   placeholder="Enter your password"
-                  className="border pl-10 border-gray-600 focus:border-gray-300 relative flex items-center  py-4 rounded-md bg-transparent w-full outline-none font-normal p-2"
+                  className={`border pl-10 py-4 ${
+                    errors.password ? "border-red-600" : "border-gray-600"
+                  } focus:border-gray-300 rounded-md bg-transparent w-full outline-none font-normal p-2`}
                 />
               </div>
               {errors?.password && (
