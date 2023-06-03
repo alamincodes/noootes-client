@@ -25,6 +25,7 @@ export default {
         white: "#fff",
         pink: "pink",
         transparent: "transparent",
+        autofill: "transparent",
       },
       boxShadow: {
         primary: "0px 0px 15px -3px rgba(0,0,0,0.1)",

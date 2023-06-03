@@ -82,7 +82,7 @@ const Login = () => {
                   placeholder="Enter your email"
                   className={`border pl-10 py-4 ${
                     errors.email ? "border-red-600" : "border-gray-600"
-                  } focus:border-gray-300 rounded-md bg-transparent w-full outline-none font-normal p-2`}
+                  } focus:border-gray-300 rounded-md bg-transparent w-full outline-none font-normal p-2 bg-autofill`}
                 />
               </div>
 

@@ -10,18 +10,23 @@ import {
 } from "react-icons/hi2";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
+import useToken from "../../hooks/useToken";
 const SignUp = () => {
   useTitle("Sign up");
   const { createUser, updateName } = useContext(AUTH_CONTEXT);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [jwtEmail, setJwtEmail] = useState("");
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-
+  const [token] = useToken(jwtEmail);
   const navigate = useNavigate();
+  if (token) {
+    navigate("/notes");
+  }
 
   const handleSignUp = (data) => {
     console.log(data);
@@ -49,7 +54,7 @@ const SignUp = () => {
             console.log(data);
             if (data.acknowledged) {
               setIsLoading(false);
-              navigate("/");
+              setJwtEmail(user?.email);
             }
           });
       })

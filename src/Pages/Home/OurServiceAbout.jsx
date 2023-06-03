@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 import { RiUserLocationLine } from "react-icons/ri";
 import { IoAccessibility } from "react-icons/io5";
-const OurService = () => {
+const OurServiceAbout = () => {
   const cards = [
     {
       id: 1,
@@ -87,4 +87,4 @@ const OurService = () => {
   );
 };
 
-export default OurService;
+export default OurServiceAbout;
