@@ -18,7 +18,7 @@ const ChangePassword = () => {
 
     setErrorMessage("");
     if (currentPassword.length === 0 || newPassword.length === 0) {
-      setErrorMessage(" Name cannot be empty.*");
+      setErrorMessage("Password cannot be empty.*");
       return;
     }
     if (currentPassword.length < 6 || newPassword.length < 6) {

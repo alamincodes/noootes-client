@@ -5,10 +5,28 @@ const About = () => {
   useTitle("About");
   return (
     <section
-      className="container mx-auto text-center
+      className="container mx-auto 
   "
     >
-      About page soon...
+      <h2 className="md:text-5xl text-3xl  bg-clip-text text-transparent bg-gradient-to-tl from-teal-300 to-violet-500 font-bold ">
+        About us
+      </h2>
+      <div className="bg-gradient-to-tr from-[#016eda] to-[#d900c0] p-1 mt-7 rounded-md">
+        <div className="bg-gray-900/60 backdrop-blur-3xl p-3 rounded-md">
+          Welcome to our{" "}
+          <span className="font-bold text-teal-400">noootes</span> web app! We
+          are excited to introduce ourselves and provide you with a glimpse into
+          who we are and what we aim to accomplish. At our core, we are a team
+          of dedicated individuals passionate about productivity, organization,
+          and simplifying your life through effective note-taking. Our goal is
+          to empower you to capture ideas, organize thoughts, and access
+          information effortlessly. We understand the challenges that come with
+          managing information in today's fast-paced world. With the constant
+          influx of data and the need to juggle multiple tasks, staying
+          organized and being able to retrieve important information quickly is
+          essential. That's where our note-taking web app comes in.
+        </div>
+      </div>
     </section>
   );
 };

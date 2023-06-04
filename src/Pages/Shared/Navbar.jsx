@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut();
     setOpenProfile(false);
-    localStorage.removeItem('noooteToken')
+    localStorage.removeItem("noooteToken");
   };
   return (
     <>
@@ -67,17 +67,19 @@ const Navbar = () => {
             <div className="flex items-center space-x-3">
               {user?.uid ? (
                 <>
-                  <div
-                    onClick={() => setOpenProfile(!openProfile)}
-                    className="bg-gradient-to-tr cursor-pointer flex justify-center items-center md:w-9 md:h-9 w-7 h-7 rounded-full from-teal-400 to-purple-600"
-                  >
-                    <span className="md:text-2xl text-xl select-none uppercase">
-                      {user?.displayName?.[0]}
-                    </span>
+                  <div className="cursor-pointer p-[2px] bg-gradient-to-tr from-[#016eda] to-[#d900c0] rounded-full md:w-9 md:h-9 w-7 h-7">
+                    <div
+                      onClick={() => setOpenProfile(!openProfile)}
+                      className="bg-black rounded-full md:w-8 md:h-8 w-6 h-6 flex justify-center items-center "
+                    >
+                      <span className="text-xl select-none uppercase">
+                        {user?.displayName?.[0]}
+                      </span>
+                    </div>
                   </div>
                   {openProfile && (
                     <div
-                      className="absolute border border-gray-600 md:right-14 right-1 md:top-6 top-7 bg-[#1A1A1A] w-[200px] text-base z-10 list-none divide-y divide-gray-100 rounded shadow-boxShadow my-4"
+                      className="absolute z-10 border border-gray-600 md:right-14 right-1 md:top-6 top-7 bg-[#1A1A1A] w-[200px] text-base list-none divide-y divide-gray-100 rounded shadow-boxShadow my-4"
                       id="dropdown"
                     >
                       <div className="px-4 py-3">
