@@ -2,7 +2,7 @@ import React from "react";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
-    <footer className="container mx-auto mt-20 border-t border-gray-900 py-5">
+    <footer className="container mx-auto py-5">
       <div className="flex justify-between">
         <p>© Copyright 2023 Noootes</p>
         <div className="flex items-center space-x-3">

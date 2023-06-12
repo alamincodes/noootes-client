@@ -53,10 +53,10 @@ const OurServiceAbout = () => {
     },
   ];
   return (
-    <section className="mt-20">
+    <section className="mt-20 bg-violet-800/20 md:py-24 py-10">
       <div className="mx-auto container">
         <div>
-          <h2 className="lg:text-6xl text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-br from-violet-500 to-blue-500">
+          <h2 className="lg:text-6xl text-3xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-br from-violet-500 to-blue-500">
             Start effortlessly with us.
           </h2>
         </div>

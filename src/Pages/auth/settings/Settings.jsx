@@ -8,7 +8,7 @@ const Settings = () => {
     <AnimatePage>
       <div className="container mx-auto">
         <div className="border-b border-gray-600 ">
-          <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 ">
+          <ul className="flex -mb-px text-sm font-medium text-center text-gray-500 overflow-x-auto">
             <NavLink
               to="/settings/updateName"
               className={({ isActive }) =>
@@ -24,7 +24,10 @@ const Settings = () => {
                     {" "}
                     <HiOutlineUserCircle size={20} className="mr-1" />{" "}
                   </span>{" "}
-                  Update name
+                  <span className="flex mr-1">
+                    {" "}
+                    <span className="mr-1">Update</span> name
+                  </span>
                 </h2>
               </li>
             </NavLink>
@@ -42,7 +45,10 @@ const Settings = () => {
                   <span>
                     <HiOutlineKey size={20} className="mr-1" />
                   </span>{" "}
-                  Change password
+                  <span className="flex mr-1">
+                    {" "}
+                    <span className="mr-1">Update</span> password
+                  </span>
                 </h2>
               </li>
             </NavLink>

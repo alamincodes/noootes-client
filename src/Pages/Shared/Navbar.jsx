@@ -142,9 +142,9 @@ const Navbar = () => {
           </nav>
         </div>
       </div>
-
+      {/* mobile menu */}
       <div
-        className={`w-full  bg-gradient-to-tr from-teal-500 to-fuchsia-500 p-1 transition-all text-white fixed z-10 left-0 h-fit  lg:hidden flex justify-center text-center duration-500 ${
+        className={`w-full bg-gradient-to-tr from-teal-500 to-fuchsia-500 p-1 transition-all text-white fixed z-10 left-0 h-fit lg:hidden flex justify-center text-center duration-500 ${
           openMenu ? "top-[64px] " : "top-[-100%]"
         }`}
       >

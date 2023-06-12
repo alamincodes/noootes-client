@@ -32,6 +32,13 @@ const Notes = () => {
         setNotes(data.reverse());
       });
   }, []);
+  if (isLoading) {
+    return (
+      <div className="container mx-auto grid gap-4 md:grid-cols-5 grid-cols-2">
+        <SkeletonCard cards={20} />
+      </div>
+    );
+  }
   return (
     <AnimatePage>
       <section className="">
@@ -39,7 +46,6 @@ const Notes = () => {
           <h2 className="text-2xl my-3 font-bold">My Notes</h2>
 
           <div className="grid gap-4 md:grid-cols-5 grid-cols-2">
-            {isLoading && <SkeletonCard cards={20} />}
             {notes.map((note) => (
               <Note key={note._id} note={note} />
             ))}
