@@ -30,7 +30,7 @@ const Navbar = () => {
               </Link>
             </div>
             {/* menu*/}
-            <ul className="md:flex hidden items-center space-x-7">
+            <ul className="md:flex hidden font-semibold text-gray-300 items-center space-x-7">
               <NavLink
                 to="/"
                 className={({ isActive }) =>

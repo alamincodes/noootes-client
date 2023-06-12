@@ -3,7 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      primary: "Jost, sans-serif",
+      primary: "PT Sans, sans-serif",
       secondary: "Anek Bangla, sans-serif",
     },
     container: {
