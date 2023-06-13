@@ -82,7 +82,7 @@ const CreateNote = () => {
         <form className="flex flex-col">
           <input
             type="text"
-            className={`bg-transparent text-2xl py-[0.5rem] px-4 outline-none`}
+            className="bg-transparent font-bold text-2xl py-[0.5rem] px-4 outline-none"
             autoFocus
             name="title"
             // onChange={handleTextChange}

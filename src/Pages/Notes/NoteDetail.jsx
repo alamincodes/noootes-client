@@ -105,7 +105,7 @@ const NoteDetail = () => {
             </div>
           </div>
         )}
-        <h2 className="text-xl">{note.title}</h2>
+        <h2 className="text-xl font-bold">{note.title}</h2>
         <h2 className="text-gray-300 mt-2">{note.note}</h2>
       </div>
       {openModal && (

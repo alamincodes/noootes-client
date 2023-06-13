@@ -25,7 +25,7 @@ const Home = () => {
             {user ? (
               <Link to="/notes">
                 <div className="relative mt-10 group w-[200px]">
-                  <div className="absolute blur-xl -inset-0.5 group-hover:opacity-90 opacity-70 duration-200 rounded bg-gradient-to-tr from-[#AD44FF] via-[#448FFF] to-[#8BFF44] "></div>
+                  <div className="absolute blur-xl -inset-0.5 group-hover:opacity-90 opacity-70 duration-200 rounded bg-gradient-to-tr from-[#AD44FF] via-[#448FFF] to-[#8BFF44]"></div>
                   <div className="bg-gradient-to-tr p-[2px] rounded from-[#016eda] to-[#d900c0]">
                     <button className="bg-black w-full rounded backdrop-blur-xl py-4 px-5">
                       My notes

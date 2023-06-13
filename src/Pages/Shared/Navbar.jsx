@@ -35,7 +35,7 @@ const Navbar = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded  bg-gradient-to-br from-teal-500 to-black"
+                    ? "rounded bg-gray-500/20 text-teal-500"
                     : undefined
                 }
               >
@@ -45,7 +45,7 @@ const Navbar = () => {
                 to="/about"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded  bg-gradient-to-br from-red-500 to-black"
+                    ? "rounded bg-gray-500/20 text-teal-500"
                     : undefined
                 }
               >
@@ -55,7 +55,7 @@ const Navbar = () => {
                 to="/notes"
                 className={({ isActive }) =>
                   isActive
-                    ? "rounded  bg-gradient-to-br from-violet-500 to-black"
+                    ? "rounded bg-gray-500/20 text-teal-500"
                     : undefined
                 }
               >
