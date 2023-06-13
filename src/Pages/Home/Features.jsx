@@ -1,5 +1,9 @@
 import React from "react";
-import { HiOutlinePencil, HiOutlineTrash, HiOutlinePencilAlt } from "react-icons/hi";
+import {
+  HiOutlinePencil,
+  HiOutlineTrash,
+  HiOutlinePencilAlt,
+} from "react-icons/hi";
 
 const Features = () => {
   const boxStyle = {
@@ -12,11 +16,11 @@ const Features = () => {
           Features
         </h2>
 
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-10 mt-10">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 mt-10">
           {/* card */}
           <div
             style={boxStyle}
-            className="flex items-center justify-center text-center py-6 flex-col gap-10 md:col-span-2 rounded-xl md:px-[100px] px-6 overflow-hidden relative md:h-96 h-60 bg-[#13111C]/50 border border-fuchsia-600/50"
+            className="flex items-center justify-center text-center py-6 flex-col gap-10 lg:col-span-2 rounded-xl md:px-[100px] px-6 overflow-hidden relative md:h-96 h-60 bg-[#13111C]/50 border border-fuchsia-600/50"
           >
             <div className="absolute bg-purple-700/20 inset-10 blur-3xl"></div>
             <div className="absolute flex justify-center items-center border border-fuchsia-600/50 md:h-[200px] h-[150px] md:w-[200px] w-[150px] rounded-full -right-10 -bottom-10">
@@ -37,7 +41,7 @@ const Features = () => {
           {/* card */}
           <div
             style={boxStyle}
-            className="flex items-center justify-center text-center py-6 flex-col gap-10 md:col-span-1 rounded-xl md:px-[100px] px-6 overflow-hidden relative md:h-96 h-60 bg-[#13111C]/50 border-[1px] border-fuchsia-600/50"
+            className="flex items-center justify-center text-center py-6 flex-col gap-10 lg:col-span-1 rounded-xl md:px-[100px] px-6 overflow-hidden relative md:h-96 h-60 bg-[#13111C]/50 border-[1px] border-fuchsia-600/50"
           >
             <div className="absolute bg-purple-700/20 inset-10 blur-3xl"></div>
             <div className="absolute flex justify-center items-center border border-fuchsia-600/50 md:h-[200px] h-[150px] md:w-[200px] w-[150px] rounded-full -right-10 -bottom-10">
@@ -56,7 +60,7 @@ const Features = () => {
           {/* card */}
           <div
             style={boxStyle}
-            className="flex items-center justify-center text-center py-6 flex-col gap-10 md:col-span-1 rounded-xl md:px-[100px] px-6 overflow-hidden relative md:h-96 h-60 bg-[#13111C]/50 border-[1px] border-fuchsia-600/50"
+            className="flex items-center justify-center text-center py-6 flex-col gap-10 lg:col-span-1 rounded-xl md:px-[100px] px-6 overflow-hidden relative md:h-96 h-60 bg-[#13111C]/50 border-[1px] border-fuchsia-600/50"
           >
             <div className="absolute bg-purple-700/20 inset-10 blur-3xl"></div>
             <div className="absolute flex justify-center items-center border border-fuchsia-600/50 md:h-[200px] h-[150px] md:w-[200px] w-[150px] rounded-full -right-10 -bottom-10">
