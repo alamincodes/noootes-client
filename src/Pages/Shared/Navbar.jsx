@@ -25,7 +25,7 @@ const Navbar = () => {
                 {" "}
                 <h2 className="text-2xl font-bold select-none">
                   {" "}
-                  <span className="text-teal-500">N</span>oootes
+                  <span className="text-teal-500">N</span>ooote
                 </h2>
               </Link>
             </div>

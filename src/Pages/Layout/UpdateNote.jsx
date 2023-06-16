@@ -65,7 +65,7 @@ const UpdateNote = () => {
       })
       .then((data) => {
         setNoteDetail(data);
-        console.log(data);
+        // console.log(data);
       });
   }, []);
   return (

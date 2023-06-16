@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="container mx-auto py-5">
       <div className="flex justify-between">
-        <p>© Copyright 2023 Noootes</p>
+        <p>© Copyright 2023 Nooote</p>
         <div className="flex items-center space-x-3">
           <a target="_blank" href="https://github.com/alamincodes">
             <span>

@@ -51,7 +51,7 @@ const NoteDetail = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setNote(data);
         setIsLoading(false);
       });
@@ -62,7 +62,7 @@ const NoteDetail = () => {
         <div className="flex justify-between items-center mb-7">
           <Link to="/notes">
             {" "}
-            <h2 className="bg-gray-300/30  p-2 rounded">
+            <h2 className="bg-gray-300/30 p-2 rounded">
               <HiOutlineChevronLeft size={30} />
             </h2>
           </Link>

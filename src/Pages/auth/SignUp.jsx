@@ -79,7 +79,7 @@ const SignUp = () => {
             <Link to="/">
               <h2 className="text-2xl font-bold ">
                 {" "}
-                <span className="text-teal-500 ">N</span>oootes
+                <span className="text-teal-500 ">N</span>ooote
               </h2>
             </Link>
             <h2 className="md:text-4xl text-2xl font-semibold my-7">

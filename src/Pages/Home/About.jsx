@@ -15,7 +15,7 @@ const About = () => {
         <div className="absolute -inset-1 blur-3xl bg-gradient-to-tr from-[#AD44FF] via-[#448FFF] to-[#8BFF44] "></div>
         <div className="relative">
           Welcome to our{" "}
-          <span className="font-bold text-teal-400 underline decoration-wavy">noootes</span> web app! We
+          <span className="font-bold text-teal-400 underline decoration-wavy">nooote</span> web app! We
           are excited to introduce ourselves and provide you with a glimpse into
           who we are and what we aim to accomplish. At our core, we are a team
           of dedicated individuals passionate about productivity, organization,
